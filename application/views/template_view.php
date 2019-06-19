@@ -163,36 +163,32 @@
                         </a>
                         <ul class="ml-menu">
                     <li>
-                        <a href="<?php echo base_url('dokter'); ?>">
+                        <a href="<?php echo base_url('customer'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Dokter</span>
+                            <span>Customer</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('pasien'); ?>">
+                        <a href="<?php echo base_url('daya'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Pasien</span>
+                            <span>Daya</span>
                         </a>
                     </li> 
-                    <li>
-                        <a href="<?php echo base_url('treatment'); ?>">
-                           <i class="material-icons">dns</i>
-                            <span>Treatment</span>
-                        </a>
-                    </li> 
-                    <li>
-                        <a href="<?php echo base_url('specialist_detail'); ?>">
-                           <i class="material-icons">dns</i>
-                            <span>Specialist Detail</span>
-                        </a>
-                    </li> 
-                       
-                    <li>
+					<li>
                         <a href="<?php echo base_url('user'); ?>">
                            <i class="material-icons">dns</i>
                             <span>User</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('setting'); ?>">
+                           <i class="material-icons">dns</i>
+                            <span>Setting</span>
+                        </a>
+                    </li> 
+                     
+                       
+                    
                     
                         </ul>
                     </li>
@@ -206,9 +202,9 @@
                         <ul class="ml-menu">
                  
                     <li>
-                        <a href="<?php echo base_url('jadwal_kunjungan'); ?>">
+                        <a href="<?php echo base_url('pembayaran'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Jadwal Kunjungan</span>
+                            <span>Pembayaran</span>
                         </a>
                     </li> 
                      
@@ -227,7 +223,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; <?php echo date('Y'); ?> <a href="javascript:void(0);"> Teta Aesthetic Clinic </a>
+                    &copy; <?php echo date('Y'); ?> <a href="javascript:void(0);"> Payment System </a>
                 </div>
             </div>
             <!-- #Footer -->

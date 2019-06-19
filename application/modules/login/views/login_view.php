@@ -11,8 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title> <?php echo $judul; ?> </title>
     <!-- Favicon-->
-     <link rel="icon" href="<?php echo base_url(); ?>assets/images/tetalogo.png" type="image/x-icon">
-
+      
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -48,9 +47,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <form id="sign_in" action="<?php echo base_url('login/autentikasi'); ?>" method="POST" enctype="multipart/form-data">
 				
 				<div align="center">
-				<img src="<?php echo base_url('assets/images/tetalogo.png'); ?>" style="width:50%; height:50%; ">
+				<h3> <?php echo $judul; ?></h3>
 				</div>
-                    <div class="msg"><b><?php echo $judul; ?> </b> </div>
+                     
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
