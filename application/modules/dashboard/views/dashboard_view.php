@@ -22,88 +22,47 @@
                     <div class="card">
                         <div class="header">
                             <h2>List Pembayaran Terakhir Per Tanggal <?php echo tanggalan(date('Y-m-d')); ?> </h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            
                         </div>
                         <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-hover dashboard-task-infos">
+                        <div class="table-responsive">
+                               <table class="table table-bordered table-striped table-hover js-basic-example" id="example" >
+                               
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Nama Customer</th>
-                                            <th>Alamat</th>
-                                            <th>Total KWH</th>
-                                            <th>Abodemen</th>
-											<th>Admin</th>
-											<th>Total Bayar</th>
+                                            <th style="width:1%;">#</th>  
+                                            <th style="width:1%;">Nama Customer</th>  
+                                            <th style="width:5%;">Blok</th>
+                                            <th style="width:5%;">Daya</th>   
+                                            <th style="width:5%;">Last KWH</th>  
+                                            <th style="width:5%;">Current KWH</th>  
+                                            <th style="width:5%;">Used KWH</th>  
+                                            <th style="width:5%;">Payment</th>  
+                                            
                                         </tr>
-                                    </thead>
+                                    </thead> 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Slamet Riyadi A</td>
-                                            <td>BS B001</td>
-                                            <td>300</td>
-											<td>Rp.5000</td>
-											<td>Rp.5000</td>
-											<td>Rp.170.000</td>
-                                            
-                                        </tr>
-										<tr>
-                                            <td>2</td>
-                                            <td>Gunawan</td>
-                                            <td>BS B002</td>
-                                            <td>300</td>
-											<td>Rp.5000</td>
-											<td>Rp.5000</td>
-											<td>Rp.150.000</td>
-                                            
-                                        </tr>
-										<tr>
-                                            <td>3</td>
-                                            <td>Yahya</td>
-                                            <td>BS B003</td>
-                                            <td>300</td>
-											<td>Rp.5000</td>
-											<td>Rp.5000</td>
-											<td>Rp.180.000</td>
-                                            
-                                        </tr>
-										<tr>
-                                            <td>4</td>
-                                            <td>Erna</td>
-                                            <td>BS B004</td>
-                                            <td>300</td>
-											<td>Rp.5000</td>
-											<td>Rp.5000</td>
-											<td>Rp.100.000</td>
-                                            
-                                        </tr>
-										<tr>
-                                            <td>5</td>
-                                            <td>Yuni</td>
-                                            <td>BS B005</td>
-                                            <td>300</td>
-											<td>Rp.5000</td>
-											<td>Rp.5000</td>
-											<td>Rp.160.000</td>
-                                            
-                                        </tr>
-                                         
+                                    <?php
+                                    $no = 1;
+                                    foreach($listing as $key=>$val){
+                                        echo ' <tr>
+                                        <td>'.$no.'</td>  
+                                        <td>'.$val->nama.'</td>  
+                                        <td>'.$val->blok.'</td>  
+                                        <td>'.$val->kapasitas_daya.'</td>  
+                                        <td>'.$val->last_use_kwh.'</td>  
+                                        <td>'.$val->current_use_kwh.'</td>  
+                                        <td>'.$val->used_kwh.'</td>  
+                                        <td> Rp. '.number_format($val->payment).'</td>  
+                                        
+                                        </tr>';
+                                    $no++;
+                                    }
+                                    ?>
                                     </tbody>
-                                </table>
+                                </table> 
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -43,6 +43,12 @@ class M_payment extends Parent_Model {
      left join daya c on c.id = b.id_daya")->result(); 
    
        $data = array();  
+       /*
+       primaper_pln
+
+       primaper_pln2019
+       2019PLN!OKE_
+       */
      
            foreach($query as $row)  
            {  
@@ -55,6 +61,7 @@ class M_payment extends Parent_Model {
                 $sub_array[] = $row->current_use_kwh;
                 $sub_array[] = $row->used_kwh;
                 $sub_array[] = "Rp. ".number_format($row->payment);  
+                $sub_array[] = tanggalan($row->date_payment);
                 $sub_array[] = '<a href="javascript:void(0)" id="delete" class="btn btn-danger btn-xs waves-effect" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Hapus </a>';  
                 
                 $data[] = $sub_array;  

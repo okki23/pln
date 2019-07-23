@@ -30,6 +30,7 @@
                                             <th style="width:5%;">Current KWH</th>  
                                             <th style="width:5%;">Used KWH</th>  
                                             <th style="width:5%;">Payment</th>  
+                                            <th style="width:5%;">Date Payment</th>  
                                             <th style="width:15%;">Opsi</th> 
                                         </tr>
                                     </thead> 
