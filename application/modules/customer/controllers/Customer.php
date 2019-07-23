@@ -31,18 +31,17 @@ class customer extends Parent_Controller {
        echo json_encode($getdata);   
 	}
 
-	public function fetch_treatment(){  
-		$getdata = $this->m_customer->fetch_treatment();
+	public function fetch_daya(){  
+		$getdata = $this->m_customer->fetch_daya();
 		echo json_encode($getdata);   
 	}
 	  
 	public function get_data_edit(){
 		$id = $this->uri->segment(3);
-		$this->db->select('*,m_customer.id as id_customer');
-		$this->db->from('m_customer');
-		$this->db->join('m_treatment', 'm_treatment.id = m_customer.id_treatment');
-		$this->db->join('m_treatment_detail', 'm_treatment_detail.id_treatment = m_treatment.id');
-		$this->db->where('m_customer.id',$id);
+		$this->db->select('*,daya.id as iddaya, daya.kapasitas_daya as daya');
+		$this->db->from('customer');
+		$this->db->join('daya', 'daya.id = customer.id_daya');
+		 
 		$query = $this->db->get()->row();
 		   
 		echo json_encode($query,TRUE);

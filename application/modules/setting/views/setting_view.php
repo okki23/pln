@@ -24,8 +24,7 @@
                                         <tr>
                                             <th style="width:1%;">No</th>  
                                             <th style="width:5%;">Nama Apps</th>
-                                            <th style="width:3%;">Author</th>   
-                        
+                                            <th style="width:3%;">Author</th>    
                                             <th style="width:10%;">Opsi</th> 
                                         </tr>
                                     </thead> 
