@@ -38,7 +38,7 @@ class M_customer extends Parent_Model {
  
   public function fetch_customer(){
  
-     $this->db->select('*,daya.kapasitas_daya as daya');
+     $this->db->select('*,daya.kapasitas_daya as daya,daya.abodemen,daya.admin,daya.base_kwh,daya.kapasitas_daya');
      $this->db->from('customer');
      $this->db->join('daya', 'daya.id = customer.id_daya');
       
@@ -58,7 +58,10 @@ class M_customer extends Parent_Model {
                 $sub_array[] = $row->daya;  
                 $sub_array[] = '<a href="javascript:void(0)" class="btn btn-warning btn-xs waves-effect" id="edit" onclick="Ubah_Data('.$row->id.');" > <i class="material-icons">create</i> Ubah </a>  &nbsp; 
                                 <a href="javascript:void(0)" id="delete" class="btn btn-danger btn-xs waves-effect" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Hapus </a>';  
-                
+                $sub_array[] = $row->id;
+                $sub_array[] = $row->abodemen; 
+                $sub_array[] = $row->admin;  
+                $sub_array[] = $row->base_kwh;  
                 $data[] = $sub_array;  
             
            }  

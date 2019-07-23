@@ -195,7 +195,7 @@
                         <ul class="ml-menu">
                  
                     <li>
-                        <a href="<?php echo base_url('pembayaran'); ?>">
+                        <a href="<?php echo base_url('payment'); ?>">
                            <i class="material-icons">dns</i>
                             <span>Pembayaran</span>
                         </a>
