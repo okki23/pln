@@ -63,7 +63,7 @@ class payment extends Parent_Controller {
         // set auto page breaks
         $this->pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
         // add a page
-        $this->pdf->AddPage("P", "A4");
+        $this->pdf->AddPage("L", "A5");
         // set font
 		$this->pdf->SetFont("helvetica", "", 9);
 		$data['list'] = $sql;

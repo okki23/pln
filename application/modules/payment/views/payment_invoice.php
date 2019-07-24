@@ -26,11 +26,13 @@
 
 <div class="container">
     <div class="row">
+	<div align="center"> 
+		<img src="<?php echo base_url('assets/images/kop_listrik.png'); ?>" width="350" height="80">
+		<h2>BUKTI TAGIHAN LISTRIK PASAR CIPANAS</h2>
+	</div>
         <div class="col-xs-12">
-    		<div class="invoice-title">
-    			<h2>Invoice Pembayaran Tagihan Listrik</h2>
-    		</div>
-    		<hr>
+    		 
+    		 
     		<div class="row">
     			<div class="col-xs-6">
     				<address>

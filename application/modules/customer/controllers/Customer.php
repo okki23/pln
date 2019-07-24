@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class customer extends Parent_Controller {
  
   var $nama_tabel = 'customer';
-  var $daftar_field = array('id','nama','alamat','telp','email','blok','id_daya');
+  var $daftar_field = array('id','id_pelanggan','nama','alamat','telp','email','blok','id_daya');
   var $primary_key = 'id';
   
  	public function __construct(){
@@ -38,18 +38,18 @@ class customer extends Parent_Controller {
 	  
 	public function get_data_edit(){
 		$id = $this->uri->segment(3);
-		$this->db->select('*,daya.id as iddaya, daya.kapasitas_daya as daya');
-		$this->db->from('customer');
-		$this->db->join('daya', 'daya.id = customer.id_daya');
+		$sql = "SELECT customer.*, daya.kapasitas_daya as daya, daya.abodemen, daya.admin, daya.base_kwh, daya.kapasitas_daya
+		FROM customer JOIN daya ON daya.id = customer.id_daya where customer.id = '".$id."' ";
 		 
-		$query = $this->db->get()->row();
+		 
+		$query = $this->db->query($sql)->row();
 		   
 		echo json_encode($query,TRUE);
 	}
 	 
 	public function hapus_data(){
 		$id = $this->uri->segment(3);  
-    	$delete = $this->db->where('id',$id)->delete('m_customer');
+    	$delete = $this->db->where('id',$id)->delete('customer');
     	 
     	if($delete){
     		$result = array("response"=>array('message'=>'success'));	

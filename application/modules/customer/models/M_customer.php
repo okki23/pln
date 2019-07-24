@@ -5,7 +5,7 @@ class M_customer extends Parent_Model {
   
  
     var $nama_tabel = 'customer';
-    var $daftar_field = array('id','nama','alamat','telp','email','blok','id_daya');
+    var $daftar_field = array('id','id_pelanggan','nama','alamat','telp','email','blok','id_daya');
     var $primary_key = 'id';
   
     
@@ -50,6 +50,7 @@ class M_customer extends Parent_Model {
            {  
                 $sub_array = array();
                
+                $sub_array[] = $row->id_pelanggan;
                 $sub_array[] = $row->nama;
                 $sub_array[] = $row->alamat;
                 $sub_array[] = $row->email; 

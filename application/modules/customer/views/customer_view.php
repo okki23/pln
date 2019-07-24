@@ -23,13 +23,14 @@
   
                                     <thead>
                                         <tr>
+                                            <th style="width:1%;">ID Pelanggan</th>  
                                             <th style="width:1%;">Nama</th>  
                                             <th style="width:5%;">Alamat</th>
                                             <th style="width:5%;">Email</th>   
                                             <th style="width:5%;">Telp</th>  
                                             <th style="width:5%;">Blok</th>  
                                             <th style="width:5%;">Daya</th>  
-                                            <th style="width:10%;">Opsi</th> 
+                                            <th style="width:15%;">Opsi</th> 
                                         </tr>
                                     </thead> 
                                 </table> 
@@ -57,6 +58,11 @@
                                  
                                     <input type="hidden" name="id" id="id">    
 
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" name="id_pelanggan" id="id_pelanggan" class="form-control" placeholder="ID Pelanggan" />
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama" />
@@ -183,6 +189,7 @@
                   console.log(result);
                  $("#defaultModal").modal('show'); 
                  $("#id").val(result.id);
+                 $("#id_pelanggan").val(result.id_pelanggan); 
                  $("#nama").val(result.nama);  
                  $("#alamat").val(result.alamat);
                  $("#telp").val(result.telp); 
