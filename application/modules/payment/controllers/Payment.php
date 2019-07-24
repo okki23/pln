@@ -4,13 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
 class payment extends Parent_Controller {
  
-  var $nama_tabel = 't_payment';
-  var $daftar_field = array('id','id_customer','last_use_kwh','current_use_kwh','used_kwh','payment','date_payment');
-  var $primary_key = 'id';
+    var $nama_tabel = 't_payment';
+    var $daftar_field = array('id','id_customer','last_use_kwh','current_use_kwh','used_kwh','payment','date_payment','status','due_date');
+    var $primary_key = 'id';
   
  	public function __construct(){
+		 
  		parent::__construct();
- 		$this->load->model('m_payment'); 
+		 $this->load->model('m_payment'); 
+		 $this->load->library("pdf");
 		if(!$this->session->userdata('username')){
 		   echo "<script language=javascript>
 				 alert('Anda tidak berhak mengakses halaman ini!');
@@ -35,11 +37,58 @@ class payment extends Parent_Controller {
 
 	public function last_payment(){
 		$id = $this->uri->segment(3);
-		$data = $this->db->query("select * from t_payment where id_customer = '".$id."' order by id desc")->row();
-		 
-		echo json_encode($data,TRUE);
+		$data = $this->db->query("select * from t_payment where id_customer = '".$id."' order by id desc");
+		if($data->num_rows() > 0){
+			$res = $data->row();
+		}else{
+		  
+			$res = array('last_use_kwh'=>0,'current_use_kwh'=>0,'date_payment'=>'','due_date'=>'');
+		}
+ 
+		echo json_encode($res,TRUE);
 	}
- 	 
+
+
+	public function print_invoice(){
+		$id = $this->uri->segment(3);
+		$sql = $this->db->query("select a.*,b.*,c.* from t_payment a
+		left join customer b on b.id = a.id_customer 
+		left join daya c on c.id = b.id_daya
+		where a.id = '".$id."' ")->row();
+
+		$this->pdf->setPrintHeader(false);
+        $this->pdf->setPrintFooter(true, 'aku', 'kau');
+        $this->pdf->SetHeaderData("", "", 'Judul Header', "codedb.co");
+        $this->pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        // set auto page breaks
+        $this->pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+        // add a page
+        $this->pdf->AddPage("P", "A4");
+        // set font
+		$this->pdf->SetFont("helvetica", "", 9);
+		$data['list'] = $sql;
+        $html = $this->load->view('payment/payment_invoice', $data, true);
+
+        $this->pdf->writeHTML($html, true, false, true, false, "");
+        ob_end_clean();
+        $this->pdf->Output("Employee Information.pdf", "I");
+        //$this->pdf->Output(base_url('store_files/').'/'.$no_order.'pdf', 'I')
+	}
+	  
+	public function setpayment(){
+		$id = $this->uri->segment(3);  
+		$arr = array('status'=>1,'date_payment'=>date('Y-m-d'));
+    	$update = $this->db->set($arr)->where('id',$id)->update('t_payment');
+    	 
+    	if($update){
+    		$result = array("response"=>array('message'=>'success'));	
+	    }else{
+	    	$result = array("response"=>array('message'=>'failed'));
+	    }
+ 
+		
+		echo json_encode($result,TRUE);
+	}
 
   	public function fetch_payment(){  
        $getdata = $this->m_payment->fetch_payment();
@@ -84,7 +133,8 @@ class payment extends Parent_Controller {
 	public function simpan_data(){  
     	$data_form = $this->m_payment->array_from_post($this->daftar_field); 
 		$id = isset($data_form['id']) ? $data_form['id'] : NULL;  
-		$data_form['date_payment'] = date('Y-m-d');
+		$data_form['due_date'] = date('Y-m-d');
+		$data_form['status'] = 2;
    		$simpan_data = $this->m_payment->simpan_data($data_form,$this->nama_tabel,$this->primary_key,$id);
  
 		if($simpan_data){

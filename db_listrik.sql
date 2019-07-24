@@ -11,7 +11,7 @@
  Target Server Version : 100316
  File Encoding         : 65001
 
- Date: 24/07/2019 01:08:14
+ Date: 24/07/2019 14:41:48
 */
 
 SET NAMES utf8mb4;
@@ -30,13 +30,14 @@ CREATE TABLE `customer`  (
   `blok` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `id_daya` int(10) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of customer
 -- ----------------------------
 INSERT INTO `customer` VALUES (1, 'Nanang', 'Jl.Abu', '021873453', 'nan@mail.com', '32234B', 1);
 INSERT INTO `customer` VALUES (2, 'Joni', 'Jl.Semangka', '021834534', 'ss@mail.com', '3242H', 2);
+INSERT INTO `customer` VALUES (3, 'Wahyu', 'Jl.Bonang', '0214432834', 'bn@mail.com', '2342HH', 2);
 
 -- ----------------------------
 -- Table structure for daya
@@ -101,16 +102,14 @@ CREATE TABLE `t_payment`  (
   `used_kwh` int(50) NULL DEFAULT NULL,
   `payment` int(50) NULL DEFAULT NULL,
   `date_payment` date NULL DEFAULT NULL,
+  `status` int(10) NULL DEFAULT NULL,
+  `due_date` date NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_payment
 -- ----------------------------
-INSERT INTO `t_payment` VALUES (1, 1, 0, 100, 100, 102000, '2019-07-23');
-INSERT INTO `t_payment` VALUES (2, 1, 100, 150, 50, 51000, '2019-08-01');
-INSERT INTO `t_payment` VALUES (3, 2, 0, 100, 100, 204000, '2019-07-23');
-INSERT INTO `t_payment` VALUES (4, 2, 100, 150, 60, 102000, '2019-08-01');
-INSERT INTO `t_payment` VALUES (6, 2, 100, 900, 800, 2164500, '2019-07-23');
+INSERT INTO `t_payment` VALUES (10, 2, 0, 100, 100, 274500, '2019-07-24', 1, '2019-07-24');
 
 SET FOREIGN_KEY_CHECKS = 1;

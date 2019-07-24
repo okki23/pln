@@ -38,12 +38,12 @@ class M_customer extends Parent_Model {
  
   public function fetch_customer(){
  
-     $this->db->select('*,daya.kapasitas_daya as daya,daya.abodemen,daya.admin,daya.base_kwh,daya.kapasitas_daya');
+     $this->db->select('customer.*,daya.kapasitas_daya as daya,daya.abodemen,daya.admin,daya.base_kwh,daya.kapasitas_daya');
      $this->db->from('customer');
      $this->db->join('daya', 'daya.id = customer.id_daya');
       
      $query = $this->db->get()->result();
-      
+      //echo $this->db->last_query();
        $data = array();  
      
            foreach($query as $row)  

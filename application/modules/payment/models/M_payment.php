@@ -5,7 +5,7 @@ class M_payment extends Parent_Model {
   
  
     var $nama_tabel = 't_payment';
-    var $daftar_field = array('id','id_customer','last_use_kwh','current_use_kwh','used_kwh','payment','date_payment');
+    var $daftar_field = array('id','id_customer','last_use_kwh','current_use_kwh','used_kwh','payment','date_payment','status','due_date');
     var $primary_key = 'id';
   
     
@@ -61,8 +61,32 @@ class M_payment extends Parent_Model {
                 $sub_array[] = $row->current_use_kwh;
                 $sub_array[] = $row->used_kwh;
                 $sub_array[] = "Rp. ".number_format($row->payment);  
+                $sub_array[] = tanggalan($row->due_date);
                 $sub_array[] = tanggalan($row->date_payment);
-                $sub_array[] = '<a href="javascript:void(0)" id="delete" class="btn btn-danger btn-xs waves-effect" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Hapus </a>';  
+                if($row->status == '1'){
+                    $sub_array[] = '
+                    <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Opsi
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+              
+                      <li><a href="javascript:void(0)" onclick="Print('.$row->id.');"> <i class="material-icons">print</i>  Print Invoice</a></li>
+                      <li><a href="javascript:void(0)" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Delete</a></li>
+                    </ul>
+                    </div>'; 
+                }else{
+                    $sub_array[] = '
+                    <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Opsi
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="javascript:void(0)" onclick="SetPayment('.$row->id.');"> <i class="material-icons">attach_money</i> Paid</a></li>
+                      <li><a href="javascript:void(0)" onclick="Print('.$row->id.');"> <i class="material-icons">print</i>  Print Invoice</a></li>
+                      <li><a href="javascript:void(0)" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Delete</a></li>
+                    </ul>
+                    </div>'; 
+                }
+           
                 
                 $data[] = $sub_array;  
             

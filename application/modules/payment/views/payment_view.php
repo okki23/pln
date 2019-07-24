@@ -30,6 +30,7 @@
                                             <th style="width:5%;">Current KWH</th>  
                                             <th style="width:5%;">Used KWH</th>  
                                             <th style="width:5%;">Payment</th>  
+                                            <th style="width:5%;">Due Date</th>  
                                             <th style="width:5%;">Date Payment</th>  
                                             <th style="width:15%;">Opsi</th> 
                                         </tr>
@@ -87,6 +88,12 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="form-line">
+                                        <label class="control-label"> Last Due Date:  (Readonly) </label>
+                                            <input type="text" readonly="readonly" name="due_datex" id="due_datex" class="form-control"  />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-line">
                                         <label class="control-label"> Last Payment :  (Readonly) </label>
                                             <input type="text" readonly="readonly" name="date_paymentx" id="date_paymentx" class="form-control"  />
                                         </div>
@@ -103,6 +110,19 @@
                                             <input type="text" readonly="readonly" name="used_kwh" id="used_kwh" class="form-control" />
                                         </div>
                                     </div>
+
+                                    <!-- <div class="form-group">
+                                    
+                                    <label> Status  </label>
+                                    <br>
+                                    <input type="hidden" name="status" id="status">
+
+                                    <button type="button" id="paidbtn" class="btn btn-default waves-effect "> Paid </button>
+
+                                    <button type="button" id="unpaidbtn" class="btn btn-default waves-effect "> Unpaid </button>
+                                
+                                    </div> -->
+                             
                                    
                                     <div class="form-group">
                                         <div class="form-line">
@@ -170,14 +190,63 @@
   
    <script type="text/javascript">
    
+   function Print(id){
+        window.open('<?php echo base_url('payment/print_invoice/'); ?>'+id, 'print_invoice', 'width=1366, height=768, status=1,scrollbar=yes'); 
+   }
+   function SetPayment(id){
+    if(confirm('Anda yakin ingin membayar tagihan ini?'))
+        {
+        // ajax delete data to database
+        $.ajax({
+            url : "<?php echo base_url('payment/setpayment')?>/"+id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {
+               
+               $('#example').DataTable().ajax.reload(); 
+               $('#user_form')[0].reset();
+                 $('#detail_daya').html('');
+                $.notify("Tagihan dilunasi!", {
+                    animate: {
+                        enter: 'animated fadeInRight',
+                        exit: 'animated fadeOutRight'
+                    }  
+                 },{
+                    type: 'success'
+                    });
+                 
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error deleting data');
+            }
+        });
+   
+    }
+   }
+    // $("#paidbtn").on("click",function(){
+    //     $("#status").val('1');
+    //     $(this).attr('class','btn btn-primary');
+    //     $("#unpaidbtn").attr('class','btn btn-default');
+
+    // });
+
+    // $("#unpaidbtn").on("click",function(){
+    //     $("#status").val('2');
+    //    $(this).attr('class','btn btn-primary');
+    //     $("#paidbtn").attr('class','btn btn-default');
+
+         
+    // });
+
+
     function Calculate(){
         var last_use_kwh = $("#last_use_kwh").val();
         var current_use_kwh = $("#current_use_kwh").val();
         var base_kwh = $("#base_kwh").val();
         var admin = $("#admin").val();
-        var abodemen = $("#abodemen").val();
-
-       
+        var abodemen = $("#abodemen").val(); 
 
         var isi = (parseInt(current_use_kwh) -  parseInt(last_use_kwh));
         var ipay =  ( (parseInt(isi) * parseInt(base_kwh)) + parseInt(admin) + parseInt(abodemen)); 
@@ -211,12 +280,13 @@
         $('#daftar_customer tbody').on('click', 'tr', function () {
             
             var content = daftar_customer.row(this).data() 
-            
+            console.log(content);
             $.get("<?php echo base_url('payment/last_payment/'); ?>"+content[7],function(res){
                 console.log(res); 
                 var isi = JSON.parse(res);
                 $("#last_use_kwh").val(isi.last_use_kwh);
                 $("#date_paymentx").val(isi.date_payment);
+                $("#due_datex").val(isi.due_date);
                 $("#infobar").html('Info  Biaya Admin : Rp. '+currencyFormatDE(content[9])+' Abodemen : Rp.'+ currencyFormatDE(content[8]) +' Base KWH : Rp. ' + currencyFormatDE(content[10]) + ' Kapasitas Daya : ' + content[5] + ' Watt');
             });
 
@@ -225,6 +295,7 @@
             $("#admin").val(content[9]);
             $("#abodemen").val(content[8]);
             $("#base_kwh").val(content[10]);
+            
             
             $("#id_customer").val(content[7]);
             
@@ -351,7 +422,8 @@
                  $("#defaultModal").modal('hide');
                  $('#example').DataTable().ajax.reload(); 
                  $('#user_form')[0].reset();
-    
+                 $("#saysid").html('');
+                // $(':input').val();
                  Bersihkan_Form();
                  $.notify("Data berhasil disimpan!", {
                     animate: {
@@ -373,37 +445,7 @@
 
     }
       
- 
-var g_dataFull = [];
-
-/* Formatting function for row details - modify as you need */
-function format ( d ) {
-    var html = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" width="100%">';
-      
-    var dataChild = [];
-    var hasChildren = false;
-    $.each(g_dataFull, function(){
-       if(this.id_parent_payment === d.id){
-          html += 
-            '<tr><td>' + $('<div>').text(this.nama_pelayanan).html() + '</td>' + 
-            '<td>' +  $('<div>').text(this.nama_komp_biaya).html() + '</td>' + 
-            '<td>' +  $('<div>').text(this.nama_payment).html() +'</td>' + 
-            '<td>' +  $('<div>').text(this.nama_satuan).html() + '</td>'+
-            '<td>' +  $('<div>').text(this.action).html() + '</td></tr>';
-
-         
-          hasChildren = true;
-       }
-    });
   
-    if(!hasChildren){
-        html += '<tr><td>There are no items in this view.</td></tr>';
-     
-    } 
-    html += '</table>';
-    return html;
-}
- 
 
        $(document).ready(function() {
            
