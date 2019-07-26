@@ -13,8 +13,21 @@
                                 Payment
                             </h2>
                             <br>
-                            <a href="javascript:void(0);" id="addmodal" class="btn btn-primary waves-effect">  <i class="material-icons">add_circle</i>  Tambah Data </a>
+                            <?php 
+                                if($this->session->userdata('level') == '1'){
+                            ?>
+
+                                <a href="javascript:void(0);" id="addmodal" class="btn btn-primary waves-effect">  <i class="material-icons">add_circle</i>  Tambah Data </a>
  
+
+                            <?php
+                                }else{
+                            ?>
+
+                            <?php
+                                }
+                            ?>
+                            
                         </div>
                         <div class="body">
                                 

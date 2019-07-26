@@ -25,6 +25,7 @@
                                         <tr>
                                             <th style="width:5%;">No</th>
                                             <th style="width:5%;">Username</th>  
+                                            <th style="width:5%;">Level</th>  
                                             <th style="width:10%;">Opsi</th> 
                                         </tr>
                                     </thead> 
@@ -63,6 +64,19 @@
                                             <input type="password" name="password" id="password" class="form-control" placeholder="Password" /> 
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                    
+                                    <label> User Type  </label>
+                                    <br>
+                                    <input type="text" name="level" id="level">
+
+                                    <button type="button" id="adminbtn" class="btn btn-default waves-effect "> Admin </button>
+
+                                    <button type="button" id="userbtn" class="btn btn-default waves-effect "> Kasir </button>
+                                
+                                    </div>
+                             
                                  
 
                                    <button type="button" onclick="Simpan_Data();" class="btn btn-success waves-effect"> <i class="material-icons">save</i> Simpan</button>
@@ -79,6 +93,20 @@
    <script type="text/javascript">
     
  
+    $("#adminbtn").on("click",function(){
+        $("#level").val('1');
+        $(this).attr('class','btn btn-primary');
+        $("#userbtn").attr('class','btn btn-default');
+
+    });
+
+    $("#userbtn").on("click",function(){
+        $("#level").val('2');
+       $(this).attr('class','btn btn-primary');
+        $("#adminbtn").attr('class','btn btn-default');
+
+         
+    });
        
      function Ubah_Data(id){
         $("#defaultModalLabel").html("Form Ubah Data");
@@ -92,8 +120,15 @@
                  $("#defaultModal").modal('show'); 
                  $("#id").val(result.id);
                  $("#username").val(result.username); 
-                 $("#id_admin_pppu").val(result.id_admin_pppu);
-                 $("#nama_adminpppu").val(result.nama); 
+                 $("#level").val(result.level); 
+                
+                 if(result.level == '1'){
+                    $("#adminbtn").attr('class','btn btn-primary');
+                    $("#userbtn").attr('class','btn btn-default');
+                 }else{
+                    $("#adminbtn").attr('class','btn btn-default');
+                    $("#userbtn").attr('class','btn btn-primary');
+                 }
              }
          });
      }

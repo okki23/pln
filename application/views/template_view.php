@@ -143,9 +143,13 @@
             
             <!-- #User Info -->
             <!-- Menu -->
+            
             <div class="menu">
-                
-                    <ul class="list">
+            <?php 
+            if($this->session->userdata('level') == '1'){
+            ?>
+
+<ul class="list">
                     <li>
                         <a href="<?php echo base_url('dashboard'); ?>">
                             <i class="material-icons">home</i>
@@ -219,6 +223,54 @@
                     
                     
                 </ul>
+
+            <?php
+            }else{
+            ?>
+
+                <ul class="list">
+                    <li>
+                        <a href="<?php echo base_url('dashboard'); ?>">
+                            <i class="material-icons">home</i>
+                            <span>Home  </span>
+                        </a>
+                    </li> 
+                    
+                    <li class="header">Transaksi</li> 
+                      <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">dns</i>
+                            <span>Transaksi</span>
+                        </a>
+                        <ul class="ml-menu">
+                 
+                    <li>
+                        <a href="<?php echo base_url('payment'); ?>">
+                           <i class="material-icons">dns</i>
+                            <span>Pembayaran</span>
+                        </a>
+                    </li> 
+                    <li>
+                        <a href="<?php echo base_url('report'); ?>">
+                           <i class="material-icons">dns</i>
+                            <span>Report</span>
+                        </a>
+                    </li> 
+                     
+                    
+                        </ul>
+                    </li>
+                    
+                     
+                    
+                    
+                </ul>
+
+            <?php
+            }
+            ?>
+
+                  
 				<!--list menu-->
 			    
             </div>

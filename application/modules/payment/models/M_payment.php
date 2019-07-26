@@ -43,12 +43,7 @@ class M_payment extends Parent_Model {
      left join daya c on c.id = b.id_daya")->result(); 
    
        $data = array();  
-       /*
-       primaper_pln
-
-       primaper_pln2019
-       2019PLN!OKE_
-       */
+       
      
            foreach($query as $row)  
            {  
@@ -64,7 +59,10 @@ class M_payment extends Parent_Model {
                 $sub_array[] = "Rp. ".number_format($row->payment);  
                 $sub_array[] = tanggalan($row->due_date);
                 $sub_array[] = tanggalan($row->date_payment);
-                if($row->status == '1'){
+
+                if($this->session->userdata('level') == '1'){
+
+                  if($row->status == '1'){
                     $sub_array[] = '
                     <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Opsi
@@ -88,6 +86,37 @@ class M_payment extends Parent_Model {
                     </ul>
                     </div>'; 
                 }
+
+                }else{
+
+
+                  if($row->status == '1'){
+                    $sub_array[] = '
+                    <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Opsi
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                    
+                      <li><a href="javascript:void(0)" onclick="Print('.$row->id.');"> <i class="material-icons">print</i>  Print Invoice</a></li>
+                      <li><a href="javascript:void(0)" onclick="PrintStruk('.$row->id.');"> <i class="material-icons">print</i>  Print Struk</a></li>
+                     
+                    </ul>
+                    </div>'; 
+                }else{
+                    $sub_array[] = '
+                    <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Opsi
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="javascript:void(0)" onclick="SetPayment('.$row->id.');"> <i class="material-icons">attach_money</i> Paid</a></li>
+                      <li><a href="javascript:void(0)" onclick="Print('.$row->id.');"> <i class="material-icons">print</i>  Print Invoice</a></li>
+                       
+                    </ul>
+                    </div>'; 
+                }
+
+                }
+              
            
                 
                 $data[] = $sub_array;  

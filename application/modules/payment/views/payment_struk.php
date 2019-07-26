@@ -21,7 +21,7 @@
 			 <td style="width:8%; "> &nbsp; </td> 
 			 <td style="width:20%; text-align:left;"> REKENING BULAN </td>
 			 <td style="width:1%; text-align:left; line-height:50%;">  : </td>
-			 <td style="width:25%; text-align:left;"> <?php echo tanggalan($list->due_date);?>  </td> 
+			 <td style="width:25%; text-align:left;"> <?php echo tanggalan_mod($list->due_date);?>  </td> 
 			 </tr>
 
 			 <tr>

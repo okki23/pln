@@ -11,7 +11,7 @@
  Target Server Version : 100316
  File Encoding         : 65001
 
- Date: 26/07/2019 08:54:46
+ Date: 26/07/2019 18:46:09
 */
 
 SET NAMES utf8mb4;
@@ -68,13 +68,17 @@ CREATE TABLE `m_user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `level` int(10) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of m_user
 -- ----------------------------
-INSERT INTO `m_user` VALUES (1, 'admin', 'YQ==');
+INSERT INTO `m_user` VALUES (1, 'admin', 'YQ==', 1);
+INSERT INTO `m_user` VALUES (9, 'kasir', 'YQ==', 2);
+INSERT INTO `m_user` VALUES (10, 'joni', 'YQ==', 1);
+INSERT INTO `m_user` VALUES (11, 'erik', 'YQ==', 2);
 
 -- ----------------------------
 -- Table structure for sistem
@@ -107,7 +111,7 @@ CREATE TABLE `t_payment`  (
   `status` int(10) NULL DEFAULT NULL,
   `due_date` date NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_payment
@@ -115,5 +119,6 @@ CREATE TABLE `t_payment`  (
 INSERT INTO `t_payment` VALUES (10, 2, 0, 100, 100, 274500, '2019-07-25', 1, '2019-07-24');
 INSERT INTO `t_payment` VALUES (11, 3, 0, 100, 100, 274500, '2019-07-25', 1, '2019-07-25');
 INSERT INTO `t_payment` VALUES (12, 1, 0, 180, 180, 182000, '2019-07-26', 1, '2019-07-25');
+INSERT INTO `t_payment` VALUES (13, 4, 0, 100, 100, 274500, NULL, 2, '2019-07-26');
 
 SET FOREIGN_KEY_CHECKS = 1;

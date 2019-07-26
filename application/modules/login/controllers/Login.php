@@ -19,16 +19,14 @@ class Login extends Parent_Controller {
 	 
 		$username = $this->input->post('username');
 		$password = base64_encode($this->input->post('password'));
-		$posisi = $this->input->post('posisi');
-	
-		$list = array("username"=>$username,"password"=>$password,"posisi"=>$posisi);
+	 
 			 
 			$auth = $this->m_login->autentikasi($username,$password);
 			 
 			$session = $this->m_login->autentikasi($username,$password)->row();
 			 
 			if($auth->num_rows() > 0){
-				$this->session->set_userdata(array('username'=>$session->username,'session'=>$posisi));
+				$this->session->set_userdata(array('username'=>$session->username,'level'=>$session->level));
 				redirect(base_url('dashboard'));
 			}else{
 				echo "<script language=javascript>
