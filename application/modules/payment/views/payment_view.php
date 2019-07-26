@@ -23,6 +23,7 @@
                                
                                     <thead>
                                         <tr>
+                                            <th style="width:1%;">ID Pelanggan</th>
                                             <th style="width:1%;">Nama Customer</th>  
                                             <th style="width:5%;">Blok</th>
                                             <th style="width:5%;">Daya</th>   
@@ -168,6 +169,7 @@
                                 
                                     <thead>
                                         <tr>  
+                                        <th style="width:98%;">ID Pelanggan </th> 
                                             <th style="width:98%;">Nama </th> 
                                             <th style="width:98%;">Alamat </th> 
                                             <th style="width:98%;">Email </th> 
@@ -193,6 +195,9 @@
    function Print(id){
         window.open('<?php echo base_url('payment/print_invoice/'); ?>'+id, 'print_invoice', 'width=1366, height=768, status=1,scrollbar=yes'); 
    }
+   function PrintStruk(id){
+        window.open('<?php echo base_url('payment/print_struk/'); ?>'+id, 'print_struk', 'width=1366, height=768, status=1,scrollbar=yes'); 
+   }
    function SetPayment(id){
     if(confirm('Anda yakin ingin membayar tagihan ini?'))
         {
@@ -205,6 +210,7 @@
             {
                
                $('#example').DataTable().ajax.reload(); 
+               window.open('<?php echo base_url('payment/print_struk/'); ?>'+id, 'print_struk', 'width=1366, height=768, status=1,scrollbar=yes'); 
                $('#user_form')[0].reset();
                  $('#detail_daya').html('');
                 $.notify("Tagihan dilunasi!", {
@@ -281,23 +287,23 @@
             
             var content = daftar_customer.row(this).data() 
             console.log(content);
-            $.get("<?php echo base_url('payment/last_payment/'); ?>"+content[7],function(res){
+            $.get("<?php echo base_url('payment/last_payment/'); ?>"+content[8],function(res){
                 console.log(res); 
                 var isi = JSON.parse(res);
                 $("#last_use_kwh").val(isi.last_use_kwh);
                 $("#date_paymentx").val(isi.date_payment);
                 $("#due_datex").val(isi.due_date);
-                $("#infobar").html('Info  Biaya Admin : Rp. '+currencyFormatDE(content[9])+' Abodemen : Rp.'+ currencyFormatDE(content[8]) +' Base KWH : Rp. ' + currencyFormatDE(content[10]) + ' Kapasitas Daya : ' + content[5] + ' Watt');
+                $("#infobar").html('Info  Biaya Admin : Rp. '+currencyFormatDE(content[10])+' Abodemen : Rp.'+ currencyFormatDE(content[9]) +' Base KWH : Rp. ' + currencyFormatDE(content[11]) + ' Kapasitas Daya : ' + content[6] + ' Watt');
             });
 
-            $("#nama_customer").val(content[0]);
+            $("#nama_customer").val(content[1]);
             $("#kapasitas_daya").val(content[5]);
-            $("#admin").val(content[9]);
-            $("#abodemen").val(content[8]);
-            $("#base_kwh").val(content[10]);
+            $("#admin").val(content[10]);
+            $("#abodemen").val(content[9]);
+            $("#base_kwh").val(content[11]);
             
             
-            $("#id_customer").val(content[7]);
+            $("#id_customer").val(content[8]);
             
             $("#CariCustomerModal").modal('hide');
         } );

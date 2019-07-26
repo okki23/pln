@@ -38,7 +38,7 @@ class M_payment extends Parent_Model {
  
   public function fetch_payment(){
  
-     $query = $this->db->query("select a.*,b.blok,b.nama,c.kapasitas_daya,c.admin,c.abodemen,c.base_kwh from t_payment a
+     $query = $this->db->query("select a.*,b.blok,b.id_pelanggan,b.nama,c.kapasitas_daya,c.admin,c.abodemen,c.base_kwh from t_payment a
      left join customer b on b.id = a.id_customer
      left join daya c on c.id = b.id_daya")->result(); 
    
@@ -54,6 +54,7 @@ class M_payment extends Parent_Model {
            {  
                 $sub_array = array();
                
+                $sub_array[] = $row->id_pelanggan;
                 $sub_array[] = $row->nama;
                 $sub_array[] = $row->blok;
                 $sub_array[] = $row->kapasitas_daya; 
@@ -69,8 +70,9 @@ class M_payment extends Parent_Model {
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Opsi
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu">
-              
+                    
                       <li><a href="javascript:void(0)" onclick="Print('.$row->id.');"> <i class="material-icons">print</i>  Print Invoice</a></li>
+                      <li><a href="javascript:void(0)" onclick="PrintStruk('.$row->id.');"> <i class="material-icons">print</i>  Print Struk</a></li>
                       <li><a href="javascript:void(0)" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Delete</a></li>
                     </ul>
                     </div>'; 

@@ -196,7 +196,7 @@
                  $("#email").val(result.email);
                  $("#blok").val(result.blok);   
                  $("#daya").val(result.daya);
-                 $("#id_daya").val(result.iddaya);
+                 $("#id_daya").val(result.id_daya);
                 
                   
              }

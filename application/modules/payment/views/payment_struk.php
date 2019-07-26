@@ -1,9 +1,9 @@
- 	<div align="center"> 
+<div align="center"> 
 		<img src="<?php echo base_url('assets/images/kop_listrik.png'); ?>" width="450" height="80">
 		  
 	</div>
 			<div style="background-color:#4287f5; width:70%; height:60%;">
-		  		<h2 align="center">BUKTI TAGIHAN LISTRIK PASAR CIPANAS</h2>  
+		  		<h2 align="center">BUKTI PEMBAYARAN LISTRIK PASAR CIPANAS</h2>  
 		  	</div>
 
 			 <br>
@@ -84,12 +84,9 @@
 			  
 			 <td style="width:50%; text-align:left; line-height:120%;"> <b> : Rp.  <?php echo number_format(($list->used_kwh * $list->base_kwh) + ($list->abodemen + $list->admin)); ?> </b> </td> 
 			 </tr>
-<!-- 
-			 <tr>
-			 <td colspan="2" align="center"> <h3> <i>// <?php echo kekata(($list->used_kwh * $list->base_kwh) + ($list->abodemen + $list->admin)); ?> rupiah // </i> </h3> </td>
-			 </tr> -->
-
+ 
 			 </table>
  
-		  		<p style="font-size:10px; font-weight:bold;" align="center">  <i>// <?php echo kekata(($list->used_kwh * $list->base_kwh) + ($list->abodemen + $list->admin)); ?> rupiah // </i>  </p>  
-		 
+		  		<p style="font-size:10px; font-weight:bold;" align="center">  <i>// <?php echo kekata(($list->used_kwh * $list->base_kwh) + ($list->abodemen + $list->admin)); ?> rupiah // </i>  <br> STRUK INI MERUPAKAN BUKTI PEMBAYARAN YANG SAH  </p>  
+				  
+			 

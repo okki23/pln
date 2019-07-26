@@ -21,6 +21,7 @@ class customer extends Parent_Controller {
 	public function index(){
 		$data['judul'] = $this->data['judul']; 
 		$data['konten'] = 'customer/customer_view';
+	
 		$this->load->view('template_view',$data);		
    
 	}

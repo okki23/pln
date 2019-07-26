@@ -11,7 +11,7 @@
  Target Server Version : 100316
  File Encoding         : 65001
 
- Date: 24/07/2019 14:41:48
+ Date: 26/07/2019 08:54:46
 */
 
 SET NAMES utf8mb4;
@@ -23,6 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer`  (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id_pelanggan` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `nama` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   `telp` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
@@ -30,14 +31,15 @@ CREATE TABLE `customer`  (
   `blok` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `id_daya` int(10) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of customer
 -- ----------------------------
-INSERT INTO `customer` VALUES (1, 'Nanang', 'Jl.Abu', '021873453', 'nan@mail.com', '32234B', 1);
-INSERT INTO `customer` VALUES (2, 'Joni', 'Jl.Semangka', '021834534', 'ss@mail.com', '3242H', 2);
-INSERT INTO `customer` VALUES (3, 'Wahyu', 'Jl.Bonang', '0214432834', 'bn@mail.com', '2342HH', 2);
+INSERT INTO `customer` VALUES (1, '124274', 'Nanang', 'Jl.Abu', '021873453', 'nan@mail.com', '32234B', 1);
+INSERT INTO `customer` VALUES (2, '384533', 'Joni', 'Jl.Semangka', '021834534', 'ss@mail.com', '3242H', 2);
+INSERT INTO `customer` VALUES (3, '839457', 'Wahyu', 'Jl.Bonang', '0214432834', 'bn@mail.com', '2342HH', 2);
+INSERT INTO `customer` VALUES (4, '7343458', 'Juju', 'Jl.Yuyu', '0218495435', 'uj@mail.com', '824242B', 2);
 
 -- ----------------------------
 -- Table structure for daya
@@ -105,11 +107,13 @@ CREATE TABLE `t_payment`  (
   `status` int(10) NULL DEFAULT NULL,
   `due_date` date NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_payment
 -- ----------------------------
-INSERT INTO `t_payment` VALUES (10, 2, 0, 100, 100, 274500, '2019-07-24', 1, '2019-07-24');
+INSERT INTO `t_payment` VALUES (10, 2, 0, 100, 100, 274500, '2019-07-25', 1, '2019-07-24');
+INSERT INTO `t_payment` VALUES (11, 3, 0, 100, 100, 274500, '2019-07-25', 1, '2019-07-25');
+INSERT INTO `t_payment` VALUES (12, 1, 0, 180, 180, 182000, '2019-07-26', 1, '2019-07-25');
 
 SET FOREIGN_KEY_CHECKS = 1;

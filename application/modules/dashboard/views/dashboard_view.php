@@ -15,7 +15,43 @@
                             <br>
                             
                         <div class="body">
-                           
+                        <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box-4">
+                    <div class="icon">
+                        <i class="material-icons col-blue">attach_money</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">PENDAPATAN MASUK</div>
+                        <div class="number count-to" data-from="0" data-to="<?php echo $listbayar->total; ?>" data-speed="1000" data-fresh-interval="20"><?php echo "Rp. ".number_format($listbayar->total); ?> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box-4">
+                    <div class="icon">
+                        <i class="material-icons col-blue">attach_money</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">TAGIHAN</div>
+                        <div class="number count-to" data-from="0" data-to="<?php echo $listhutang->total; ?> " data-speed="1000" data-fresh-interval="20"><?php echo "Rp. ".number_format($listhutang->total); ?> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box-4">
+                    <div class="icon">
+                        <i class="material-icons col-blue">person</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">PELANGGAN</div>
+                        <div class="number count-to" data-from="0" data-to="<?php echo $listplg->total; ?> " data-speed="1000" data-fresh-interval="20"><?php echo $listplg->total; ?> </div>
+                    </div>
+                </div>
+            </div>
+ 
+               
             	<div class="row clearfix">
                 <!-- Line Chart -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -31,6 +67,7 @@
                                     <thead>
                                         <tr>
                                             <th style="width:1%;">#</th>  
+                                            <th style="width:1%;">ID Pelanggan</th> 
                                             <th style="width:1%;">Nama Customer</th>  
                                             <th style="width:5%;">Blok</th>
                                             <th style="width:5%;">Daya</th>   
@@ -47,6 +84,7 @@
                                     foreach($listing as $key=>$val){
                                         echo ' <tr>
                                         <td>'.$no.'</td>  
+                                        <td>'.$val->id_pelanggan.'</td>  
                                         <td>'.$val->nama.'</td>  
                                         <td>'.$val->blok.'</td>  
                                         <td>'.$val->kapasitas_daya.'</td>  

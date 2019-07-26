@@ -56,16 +56,20 @@
     <script src="<?php echo base_url(); ?>assets/plugins/node-waves/waves.js"></script>
 
     <!-- Jquery DataTable Plugin Js -->
+
     <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/jquery.dataTables.js"></script>
 
-    <script src="<?php echo base_url(); ?>js/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/dataTables.buttons.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/buttons.flash.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/jszip.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/pdfmake.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/vfs_fonts.js"></script>
-    <script src="<?php echo base_url(); ?>js/buttons.html5.min.js"></script>
-    <script src="<?php echo base_url(); ?>js/buttons.print.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+
+
+ 
     <script src="<?php echo base_url(); ?>js/buttons.colVis.min.js"></script>
     <script src="<?php echo base_url(); ?>js/filterDropDown.js"></script>
 
@@ -86,7 +90,7 @@
     <script src="<?php echo base_url(); ?>assets/plugins/jquery-validation/jquery.validate.js"></script>
     <script src="<?php echo base_url(); ?>assets/plugins/jquery-steps/jquery.steps.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/pages/forms/form-wizard.js"></script>
-
+    <script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/currency.js"></script>
    
 </head>
 
@@ -198,6 +202,12 @@
                         <a href="<?php echo base_url('payment'); ?>">
                            <i class="material-icons">dns</i>
                             <span>Pembayaran</span>
+                        </a>
+                    </li> 
+                    <li>
+                        <a href="<?php echo base_url('report'); ?>">
+                           <i class="material-icons">dns</i>
+                            <span>Report</span>
                         </a>
                     </li> 
                      
